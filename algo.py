@@ -7,5 +7,5 @@ import quandl
 quandl.ApiConfig.api_key = 'z8yaUmivVu3o-3KngVCH'
 
 mydata = quandl.get("EIA/PET_RWTC_D")
-
+print(mydata)
 
