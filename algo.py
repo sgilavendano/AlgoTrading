@@ -43,3 +43,39 @@ def get_macd():
   for x in range(0,len(ema20)):
     macd[x] = macd[x] - ema20[x]
   plt.pyplot.plot(x1,macd)
+  
+def get_rsi():
+  mydata = quandl.get("EIA/PET_RWTC_D", returns = "numpy")   #Crude oil
+  eod_data=[]
+  time=[]
+  rsi_data=[]
+  for data in mydata:
+    eod_data.append(data[1])
+    time.append(data[0])
+  for eod in range(13,len(eod_data)):
+    loss_days=0
+    gain_days=0
+    gain=0
+    loss=0
+    for x in range(eod-13,eod-1):
+      if eod_data[x]<eod_data[x+1]:
+        gain = gain + ((eod_data[x+1]-eod_data[x])/eod_data[x])
+        gain_days+=1
+      elif eod_data[x]>eod_data[x+1]:
+        loss = loss + ((eod_data[x]-eod_data[x+1])/eod_data[x])
+        loss_days+=1
+      if gain>0:
+        avg_gain= gain/gain_days
+      else:
+        avg_gain = 0
+      if loss> 0:
+        avg_loss = loss/loss_days
+      else:
+        avg_loss = 0
+    if avg_loss != 0:
+      rsi = 100 - 100 / (1 + (avg_gain/avg_loss))
+    else:
+      rsi = 100
+    rsi_data.append(rsi)
+  time=time[13:]
+  plt.pyplot.plot(time,rsi_data)
