@@ -63,10 +63,10 @@ def get_bollingerbands():
     templist= [ycord[a], ycord[a-19], ycord[a-18], ycord[a-17], ycord[a-16], ycord[a-15], ycord[a-14], ycord[a-13], ycord[a-12], ycord[a-11],ycord[a-10], ycord[a-9], ycord[a-8], ycord[a-7], ycord[a-6], ycord[a-5], ycord[a-4], ycord[a-3],ycord[a-2], ycord[a-1]]
     std = np.std(templist)
     #these if statements are not needed, but through seeing the data, i started noticing that 10-19 is the avg std and anything over and lower is extremely different
-    if(std> 20 ):
-      print("this is an extremely volatile time to invest in")
-    if(std<10):
-      print("At this point, there is little volatility")
+    #if(std> 20 ):
+    #  print("this is an extremely volatile time to invest in")
+    #if(std<10):
+    #  print("At this point, there is little volatility")
     upper_bollingerband.append( avg + (std*2))
     lower_bollingerband.append( avg - (std*2))
 
@@ -75,9 +75,7 @@ def get_bollingerbands():
 
     #upper_bollingerband = middlebollinger + np.std(middlebollinger.std *2)
     #lower_bollingerband = middlebollinger - np.std(middlebollinger.std *2)
-  
-  #I just gotta fix how to make the standarddev of the upper and lower band 
-  #Almost done
+
   plt.pyplot.plot(xcord, middlebollinger)
   plt.pyplot.plot(xcord,upper_bollingerband)
   plt.pyplot.plot(xcord,lower_bollingerband)
