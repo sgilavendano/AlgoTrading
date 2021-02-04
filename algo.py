@@ -4,13 +4,12 @@ import numpy as np
 import statistics
 import math
 import quandl
-quandl.ApiConfig.api_key = 'z8yaUmivVu3o-3KngVCH'
+#Import your own API
+quandl.ApiConfig.api_key = bahbhsbvjkwenvknd
 
 
 def get_macd():
-  mydata = quandl.get("EIA/PET_RWTC_D", returns = "numpy")   #Crude oil
-  mydata2 = quandl.get("EOD/AAPL", returns = "numpy")         #Apple
-  mydata3 = quandl.get_table('ZACKS/FC', ticker='AAPL')
+  #mydata = quandl.get("EIA/PET_RWTC_D", returns = "numpy")   #Crude oil
   x=[]
   y=[]
   sma5 =[]
@@ -44,7 +43,7 @@ def get_macd():
     macd[x] = macd[x] - ema20[x]
   plt.pyplot.plot(x1,macd)
 def get_bollingerbands():
-  bol_data = quandl.get("EOD/AAPL", returns= "numpy")
+  #bol_data = quandl.get("EOD/AAPL", returns= "numpy")
   upper_bollingerband=[]
   lower_bollingerband=[]
   middlebollinger=[]
@@ -87,7 +86,7 @@ def get_bollingerbands():
   #print(bolpanddata)
   
 def get_rsi():
-  mydata = quandl.get("EIA/PET_RWTC_D", returns = "numpy")   #Crude oil
+  #mydata = quandl.get("EIA/PET_RWTC_D", returns = "numpy")   #Crude oil
   eod_data=[]
   time=[]
   rsi_data=[]
